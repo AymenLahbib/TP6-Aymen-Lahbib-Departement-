@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Departement} from "../model/departement.model";
+import { ActivatedRoute,Router } from '@angular/router';
 import { DepartementService } from '../services/departement.service';
+
 
 @Component({
   selector: 'app-add-departement',
@@ -11,7 +13,11 @@ export class AddDepartementComponent implements OnInit {
 
   newDepartement = new Departement();
 
-  constructor(private departementServices : DepartementService) { }
+  message :String ;
+
+  constructor(private activatedRoute: ActivatedRoute,
+    private router :Router,
+    private departementServices : DepartementService) { }
 
   ngOnInit(): void {
   }
@@ -19,6 +25,9 @@ export class AddDepartementComponent implements OnInit {
   addDepartement(){
     //console.log(this.newDepartement);
     this.departementServices.ajouterDepartement(this.newDepartement);
+    this.router.navigate(['departements']);
+    
+  
     }
 
 
